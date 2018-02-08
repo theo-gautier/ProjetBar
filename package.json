@@ -1,0 +1,27 @@
+{
+  "name": "@vdeturckheim/myposts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "celebrate": "^7.0.4",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "joi": "^13.1.2",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "path": "^0.12.7",
+    "sqlite3": "^3.1.13"
+  },
+  "devDependencies": {
+    "code": "^5.1.2",
+    "lab": "^14.3.2",
+    "supertest": "^3.0.0"
+  }
+}
