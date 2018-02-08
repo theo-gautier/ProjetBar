@@ -30,7 +30,7 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.post('/', Passport.authenticate('basic', { session: false}, Celebrate.celebrate(
+router.post('/', Passport.authenticate('basic', { session: false}), Celebrate.celebrate(
 
 
 
@@ -44,11 +44,13 @@ router.post('/', Passport.authenticate('basic', { session: false}, Celebrate.cel
     }
     ),
 
-    if(req.user.TYPE != 'admin') res.end("Vous n'êtes pas admin");
 
-    else{
 
     (req, res, next) => {
+
+        if(req.user.TYPE != 'admin') res.end("Vous n'êtes pas admin");
+
+        else{
 
         console.log('INSERT new bottle of brand ' + req.body.brand);
         DB.run('INSERT INTO BOTTLES (BRAND, PRICE, VOLUME, COUNT) VALUES (?,?,?, ?)',
