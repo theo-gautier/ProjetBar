@@ -1,2 +1,5 @@
 node_modules/
 tests-express-sqlite
+bottles.id
+bottles.id-journal
+bottles.list
