@@ -24,3 +24,6 @@ CREATE TABLE USERS(
 
 INSERT INTO USERS (USERNAME, PASSWORD, TYPE)
 VALUES ('admin', 'admin123', 'admin');
+
+INSERT INTO USERS (USERNAME, PASSWORD, TYPE)
+VALUES ('not_admin', 'not_admin123', 'visitor');

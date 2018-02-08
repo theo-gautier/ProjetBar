@@ -2,10 +2,10 @@
 const Express = require('express');
 const Joi = require('joi');
 const Celebrate = require('celebrate');
-
 const DB = require('../db.js');
 
-const router = Express.Router();
+const Passport = require('./users.js').Passport;
+const router = require('./users.js').router;
 
 router.get('/', (req, res, next) => {
 
@@ -54,7 +54,7 @@ router.post('/', Celebrate.celebrate(
         });
     });
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', Passport.authenticate('basic', { session: false}), (req, res, next) => {
 
     DB.run('UPDATE BOTTLES SET COUNT=? WHERE ID = ?', [req.body.count, req.params.id], (err) =>{
 
@@ -65,15 +65,19 @@ router.patch('/:id', (req, res, next) => {
     });
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', Passport.authenticate('basic', { session: false}), (req, res, next) => {
 
-    DB.run('DELETE FROM BOTTLES WHERE ID = ?', [req.params.id], (err) => {
+    if(req.user.TYPE != 'admin') res.end("Vous n'êtes pas admin");
 
-        if (err) {
-            return next(err);
-        }
-        return res.end();
-    });
+    else{
+        DB.run('DELETE FROM BOTTLES WHERE ID = ?', [req.params.id], (err) => {
+
+          if (err) {
+              return next(err);
+          }
+          return res.end();
+        });
+  }
 });
 
 

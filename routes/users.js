@@ -29,8 +29,8 @@ Passport.use(new BasicStrategy((username, password, done) => {
 }));
 
 router.get('/login', Passport.authenticate('basic', { session: false}), (req, res) => { //On vérifie si on est identifié.
-
-  res.end("Hello " + req.user.USERNAME);
+  res.end("Bonjour " + req.user.USERNAME);
 });
 
 module.exports.router = router;
+module.exports.Passport = Passport;
