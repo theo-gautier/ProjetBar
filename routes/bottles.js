@@ -30,7 +30,10 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.post('/', Celebrate.celebrate(
+router.post('/', Passport.authenticate('basic', { session: false}, Celebrate.celebrate(
+
+
+
     {
         body: Joi.object().keys({
             brand: Joi.string().required(),
@@ -40,6 +43,11 @@ router.post('/', Celebrate.celebrate(
         })
     }
     ),
+
+    if(req.user.TYPE != 'admin') res.end("Vous n'êtes pas admin");
+
+    else{
+
     (req, res, next) => {
 
         console.log('INSERT new bottle of brand ' + req.body.brand);
@@ -52,7 +60,9 @@ router.post('/', Celebrate.celebrate(
             res.status(201);
             res.end();
         });
-    });
+
+    }
+  });
 
 router.patch('/:id', Passport.authenticate('basic', { session: false}), (req, res, next) => {
 

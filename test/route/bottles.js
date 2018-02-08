@@ -37,9 +37,7 @@ describe('bottles', () => {
                 });
         });
     });
-});
 
-describe('bottles', () => {
 
     describe('id', () => {
 
